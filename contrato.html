@@ -52,11 +52,16 @@
         .nav-links { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
         .nav-links a { display: inline-block; background: #24306e; color: white; padding: 10px 25px; border-radius: 25px; text-decoration: none; transition: all 0.3s; }
         .nav-links a:hover { background: #141c46; transform: translateY(-2px); }
+        .nav-links a.active { background: #d4b26a; color: #141a3d; font-weight: 700; }
+        .print-btn { position: fixed; top: 16px; right: 16px; background: #24306e; color: #fff; border: 0; padding: 10px 18px; border-radius: 22px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,.2); z-index: 50; }
+        @media (max-width: 768px) { .print-btn { top: auto; right: auto; bottom: 14px; left: 14px; } }
+        @media print { .print-btn, .nav-links { display: none !important; } body { background: #fff; padding: 0; } .container { box-shadow: none; } }
         .pending-value { color: #b26a00; font-style: italic; }
         @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } .signatures { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+    <button class="print-btn" onclick="window.print()">🖨️ Imprimir / PDF</button>
     <div class="container">
         <div class="header">
             <div class="company-name">Producciones Foro 7</div>
@@ -65,9 +70,12 @@
         </div>
 
         <div class="nav-links">
-            <a href="contrato.html" class="active">Contrato</a>
-            <a href="logistica.html">Logística</a>
-            <a href="selector.html">Selector Fotos</a>
+            <a href="index.html">💌 Invitación</a>
+            <a href="selector.html">📸 Fotos</a>
+            <a href="invitados.html">👥 Invitados</a>
+            <a href="contrato.html" class="active">📄 Contrato</a>
+            <a href="logistica.html">📋 Logística</a>
+            <a href="datos.html">✍️ Datos</a>
         </div>
 
         <h2 class="contract-title">CONTRATO DE SERVICIOS FOTOGRÁFICOS<br>BODA</h2>
@@ -149,6 +157,25 @@
                 </tbody>
             </table>
             <p style="margin-top:12px;color:#666;font-size:0.9rem;">La fecha se apartó con anticipo libre; el saldo se liquida 8 días antes del evento (a más tardar el 20 de noviembre de 2026).</p>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Herramientas en Línea del Evento</div>
+            <div class="info-grid">
+                <div class="info-item"><div class="info-label">Invitación web</div><div class="info-value"><a href="index.html">jennifer-carlos.invitados.org</a></div></div>
+                <div class="info-item"><div class="info-label">Selector de fotos</div><div class="info-value"><a href="selector.html">45 fotos de la sesión previa</a></div></div>
+                <div class="info-item"><div class="info-label">Invitados y confirmaciones</div><div class="info-value"><a href="invitados.html">Lista, pases y enlaces por WhatsApp</a></div></div>
+                <div class="info-item"><div class="info-label">Datos del evento</div><div class="info-value"><a href="datos.html">Formulario para completar la información</a></div></div>
+            </div>
+            <div class="package-pending">
+                <div class="package-pending-title">⏳ Información Pendiente por Proporcionar</div>
+                <ul>
+                    <li>Minuto a minuto de la recepción (comida, vals, DJ o banda) y hora de término</li>
+                    <li>Foto elegida para la ampliación de 60x80 cm (en el selector)</li>
+                    <li>Opción del paquete: fotolibro de lujo o 200 fotografías impresas</li>
+                    <li>Código de vestimenta para la invitación (se puede capturar en Datos)</li>
+                </ul>
+            </div>
         </div>
 
         <div class="terms">

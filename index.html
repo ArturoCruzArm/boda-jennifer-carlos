@@ -1,5 +1,526 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Boda Jennifer &amp; Carlos · Producciones Foro 7</title><link rel="icon" type="image/svg+xml" href="favicon.svg?v=boda1">
-<meta http-equiv="refresh" content="0; url=selector.html"></head>
-<body><p><a href="selector.html">Ir al selector de fotos</a></p></body></html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda · Jennifer & Carlos · 28 de noviembre de 2026</title>
+    <meta name="description" content="Jennifer y Carlos te invitan a su boda el sábado 28 de noviembre de 2026 en León, Gto.">
+    <meta property="og:title" content="Boda · Jennifer & Carlos">
+    <meta property="og:description" content="Sábado 28 de noviembre de 2026 · Templo de Fátima 1:00 PM · Quinta Sao Paulo 3:00 PM">
+    <meta property="og:image" content="https://jennifer-carlos.invitados.org/img/IMG_7080_EDITADA.webp">
+    <meta name="theme-color" content="#24306e">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=boda1">
+
+    <!-- Fuentes actualizadas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mr+De+Haviland&family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="styles.css?v=jc1">
+    <style>
+        /* ── SPLASH ── */
+        .splash-screen { position:fixed; inset:0; z-index:10000; background:linear-gradient(135deg,#1c2a20 0%,#2d4232 100%); display:flex; align-items:center; justify-content:center; transition:opacity .8s ease, visibility .8s ease; }
+        .splash-screen.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+        .splash-content { text-align:center; padding:2rem; }
+        .splash-icon { font-size:3rem; animation:splashFloat 3s ease-in-out infinite; }
+        @keyframes splashFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .splash-subtitle { font-size:.85rem; letter-spacing:.35em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:1.5rem; }
+        .splash-names { font-size:clamp(2.2rem,7vw,4rem); color:#c9a84c; margin:.5rem 0; font-family:'Cormorant Garamond',serif; }
+        .splash-divider { width:120px; height:1px; background:linear-gradient(90deg,transparent,#c9a84c,transparent); margin:1rem auto; }
+        .splash-date { font-size:.95rem; letter-spacing:.15em; color:rgba(255,255,255,0.5); }
+        .splash-btn { display:inline-block; margin-top:2.5rem; padding:1rem 3rem; background:transparent; border:2px solid #c9a84c; border-radius:50px; color:#c9a84c; font-size:1rem; font-weight:600; letter-spacing:.1em; cursor:pointer; transition:all .3s; }
+        .splash-btn:hover { background:#c9a84c; color:#1c2a20; transform:translateY(-3px); }
+        .splash-hint { font-size:.75rem; color:rgba(255,255,255,0.5); margin-top:1rem; opacity:.5; }
+
+        /* ── RSVP ── */
+        #rsvp { padding: 60px 20px; background: rgba(0,0,0,0.3); }
+        #rsvp .section-title { text-align:center; margin-bottom:10px; }
+        .rsvp-form { max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.08); border-radius: 16px; padding: 32px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display:block; margin-bottom:6px; font-size:.9rem; opacity:.85; }
+        .form-group input,
+        .form-group select,
+        .form-group textarea { width:100%; padding:12px 14px; border:1px solid rgba(255,255,255,0.25); border-radius:8px; background:rgba(255,255,255,0.1); color:inherit; font-size:1rem; font-family:inherit; }
+        .form-group textarea { min-height:80px; resize:vertical; }
+        #successMessage { display:none; text-align:center; padding:24px; background:rgba(16,185,129,.15); border:1px solid #10b981; border-radius:12px; color:#6ee7b7; font-size:1.05rem; margin-top:16px; }
+        [hidden] { display:none !important; }
+
+        /* ── GALERÍA ── */
+        .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; max-width:560px; margin:1.5rem auto 0; }
+        .gallery-grid button { padding:0; border:0; background:none; cursor:zoom-in; border-radius:10px; overflow:hidden; aspect-ratio:3/4; box-shadow:0 6px 18px rgba(0,0,0,.18); }
+        .gallery-grid img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease; }
+        .gallery-grid button:hover img { transform:scale(1.05); }
+        .gallery-grid button:nth-child(1) { grid-column:span 2; grid-row:span 2; aspect-ratio:auto; }
+        .lightbox { position:fixed; inset:0; z-index:10001; background:rgba(10,12,30,.94); display:flex; align-items:center; justify-content:center; padding:20px; }
+        .lightbox img { max-width:100%; max-height:88vh; border-radius:8px; }
+        .lightbox-close, .lightbox-nav { position:absolute; background:rgba(255,255,255,.12); color:#fff; border:0; border-radius:50%; width:46px; height:46px; font-size:1.4rem; cursor:pointer; }
+        .lightbox-close { top:16px; right:16px; }
+        .lightbox-nav.prev { left:12px; top:50%; } .lightbox-nav.next { right:12px; top:50%; }
+        @media (max-width:520px){ .gallery-grid{ gap:6px; } }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-icon">💍</div>
+            <p class="splash-subtitle" id="splashSubtitle">Estás invitado(a) a la boda de</p>
+            <h1 class="splash-names">Jennifer & Carlos</h1>
+            <div class="splash-divider"></div>
+            <p class="splash-date" id="splashDate">28 de Noviembre, 2026</p>
+            <p id="splashGuest" style="display:none;font-size:1.6rem;font-family:'Cormorant Garamond',serif;margin:.3rem 0;"></p>
+            <p id="splashPases" style="display:none;opacity:.75;font-size:.9rem;margin:.2rem 0 1rem;"></p>
+            <button class="splash-btn" id="openInvitation">
+                <span>Abrir Invitación</span>
+            </button>
+            <p class="splash-hint">Toca para abrir</p>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-heart">💒</div>
+        <p class="loading-text">Jennifer & Carlos</p>
+    </div>
+
+    <!-- Música de fondo (pieza original) -->
+    <audio id="background-music" loop preload="none">
+        <source src="musica-fondo.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-toggle" class="music-btn" aria-label="Controlar música">
+        <i id="music-icon" class="fas fa-volume-mute"></i>
+    </button>
+
+    <!-- Navigation Dots -->
+    <nav class="nav-dots" id="navDots" aria-label="Navegación de secciones">
+        <button class="nav-dot active" data-section="initial" data-label="Inicio" aria-label="Ir a inicio"></button>
+        <button class="nav-dot" data-section="parents" data-label="Padres" aria-label="Ir a padres"></button>
+        <button class="nav-dot" data-section="padrinos" data-label="Padrinos" aria-label="Ir a padrinos"></button>
+        <button class="nav-dot" data-section="quote" data-label="Mensaje" aria-label="Ir a mensaje"></button>
+        <button class="nav-dot" data-section="gallery" data-label="Nosotros" aria-label="Ir a fotos"></button>
+        <button class="nav-dot" data-section="countdown" data-label="Cuenta Regresiva" aria-label="Ir a cuenta regresiva"></button>
+        <button class="nav-dot" data-section="ceremony" data-label="Ceremonia" aria-label="Ir a ceremonia"></button>
+        <button class="nav-dot" data-section="reception" data-label="Recepción" aria-label="Ir a recepción"></button>
+        <button class="nav-dot" data-section="dresscode" data-label="Vestimenta" aria-label="Ir a vestimenta" data-requiere="vestimenta.tipo" hidden></button>
+        <button class="nav-dot" data-section="social" data-label="Fotos" aria-label="Ir a compartir fotos"></button>
+    </nav>
+
+    <div class="fixed-background">
+        <div class="floral-decoration top-left">
+            <img src="rosa-izquierda.png" alt="" aria-hidden="true">
+        </div>
+        <div class="floral-decoration bottom-right">
+            <img src="rosa-derecha.png" alt="" aria-hidden="true">
+        </div>
+        <div class="geometric-frame"></div>
+    </div>
+
+    <main class="content-wrapper">
+
+        <!-- 1. Inicio -->
+        <section class="content-section active" data-section="initial">
+            <div class="hero-content">
+                <p class="hero-subtitle">TE INVITAMOS A</p>
+                <h1 class="hero-title">NUESTRA BODA</h1>
+                <div class="couple-names-container">
+                    <h2 class="couple-names">
+                        Jennifer <br>
+                        <span class="ampersand-small">y</span> <br>
+                        Carlos
+                    </h2>
+                </div>
+                <div class="date-container">
+                    <p class="date-month">NOVIEMBRE</p>
+                    <div class="date-row">
+                        <span class="date-day">SÁBADO</span>
+                        <span class="date-number">28</span>
+                        <span class="date-time">1:00pm</span>
+                    </div>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 2. Padres -->
+        <section class="content-section" data-section="parents">
+            <div class="hero-content">
+                <p class="hero-subtitle">CON LA BENDICIÓN DE</p>
+                <h1 class="hero-title">NUESTROS PADRES</h1>
+                <div class="parents-hero-group">
+                    <h3 class="parents-hero-label">Padres de la Novia</h3>
+                    <div class="parents-hero-names">
+                        <p><span data-campo="padre-nombre">José de Jesús Hernández Medina</span></p>
+                        <span class="ampersand-small">&</span>
+                        <p><span data-campo="madre-nombre">María Guadalupe Lucatero Pedroza</span></p>
+                    </div>
+                </div>
+                <div class="parents-hero-divider">
+                    <span class="ampersand-small">&</span>
+                </div>
+                <div class="parents-hero-group">
+                    <h3 class="parents-hero-label">Padres del Novio</h3>
+                    <div class="parents-hero-names">
+                        <p><span data-campo="padre-novio-nombre">Efraín Serrano</span></p>
+                        <span class="ampersand-small">&</span>
+                        <p><span data-campo="madre-novio-nombre">María Guadalupe Almeida López</span></p>
+                    </div>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 3. Padrinos -->
+        <section class="content-section" data-section="padrinos">
+            <div class="hero-content">
+                <p class="hero-subtitle">CON EL HONOR DE</p>
+                <h1 class="hero-title">NUESTROS PADRINOS</h1>
+                <div class="parents-hero-group">
+                    <h3 class="parents-hero-label">Padrinos de Velación</h3>
+                    <div class="parents-hero-names">
+                        <p>Salvador Sánchez Casillas</p>
+                        <span class="ampersand-small">&</span>
+                        <p>Emma Liliana Sánchez Castro</p>
+                    </div>
+                </div>
+                <div class="parents-hero-divider">
+                    <span class="ampersand-small">&</span>
+                </div>
+                <div class="parents-hero-group">
+                    <h3 class="parents-hero-label">Padrinos de Anillos</h3>
+                    <div class="parents-hero-names">
+                        <p>Omar Fernández Curiel</p>
+                        <span class="ampersand-small">&</span>
+                        <p>Alejandrina Lucatero Pedroza</p>
+                    </div>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 4. Mensaje -->
+        <section class="content-section" data-section="quote">
+            <div class="hero-content">
+                <p class="hero-subtitle">CON TODO NUESTRO AMOR</p>
+                <h1 class="hero-title">UN NUEVO COMIENZO</h1>
+                <div class="quote-hero-text">
+                    <p class="quote-message" data-campo="invitacion-frase">Con la bendición de Dios y de nuestros padres, queremos compartir contigo el día en que uniremos nuestras vidas. Tu presencia hará este momento aún más especial.</p>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 5. Galería de la sesión -->
+        <section class="content-section" data-section="gallery">
+            <div class="hero-content">
+                <p class="hero-subtitle">ASÍ LLEGAMOS AQUÍ</p>
+                <h1 class="hero-title">NOSOTROS</h1>
+                <div class="gallery-grid" id="galleryGrid">
+                    <button type="button" data-full="img/IMG_7080_EDITADA.webp"><img src="img/thumb/IMG_7080_EDITADA.webp" alt="Jennifer y Carlos frente al Templo Expiatorio" loading="lazy"></button>
+                    <button type="button" data-full="img/IMG_7052_CORREGIDA.webp"><img src="img/thumb/IMG_7052_CORREGIDA.webp" alt="Jennifer y Carlos tomados de la mano" loading="lazy"></button>
+                    <button type="button" data-full="img/IMG_7064_EDITADA.webp"><img src="img/thumb/IMG_7064_EDITADA.webp" alt="Carlos de rodillas ante Jennifer" loading="lazy"></button>
+                    <button type="button" data-full="img/IMG_7086_CORREGIDA.webp"><img src="img/thumb/IMG_7086_CORREGIDA.webp" alt="Carlos besa a Jennifer en la mejilla" loading="lazy"></button>
+                    <button type="button" data-full="img/IMG_7091_EDITADA.webp"><img src="img/thumb/IMG_7091_EDITADA.webp" alt="Jennifer besa a Carlos" loading="lazy"></button>
+                    <button type="button" data-full="img/IMG_7055_CORREGIDA.webp"><img src="img/thumb/IMG_7055_CORREGIDA.webp" alt="Los novios frente al Templo Expiatorio" loading="lazy"></button>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 6. Cuenta regresiva -->
+        <section class="content-section" data-section="countdown">
+            <div class="hero-content">
+                <p class="hero-subtitle">NUESTRO GRAN DÍA EN</p>
+                <h1 class="hero-title">CUENTA REGRESIVA</h1>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item"><span class="countdown-number" id="days">00</span><span class="countdown-label">Días</span></div>
+                    <div class="countdown-item"><span class="countdown-number" id="hours">00</span><span class="countdown-label">Horas</span></div>
+                    <div class="countdown-item"><span class="countdown-number" id="minutes">00</span><span class="countdown-label">Minutos</span></div>
+                    <div class="countdown-item"><span class="countdown-number" id="seconds">00</span><span class="countdown-label">Segundos</span></div>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 7. Ceremonia -->
+        <section class="content-section" data-section="ceremony">
+            <div class="hero-content">
+                <p class="hero-subtitle">TE ESPERAMOS EN</p>
+                <h1 class="hero-title">CEREMONIA RELIGIOSA</h1>
+                <div class="event-hero-details">
+                    <div class="event-icon"><i class="fas fa-church"></i></div>
+                    <p class="event-time" data-campo="ceremonia-hora">1:00 PM</p>
+                    <p class="event-location"><span data-campo="ceremonia-lugar">Templo de Fátima</span></p>
+                    <p class="event-address"><span data-campo="ceremonia-direccion">Chiapas Sur 1108, Arbide, León, Gto.</span></p>
+                    <p class="event-suggestion"><i class="far fa-clock"></i> Sugerimos llegar 15 minutos antes</p>
+                    <div class="map-buttons">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Templo+de+F%C3%A1tima+Chiapas+Sur+1108+Arbide+Le%C3%B3n+Guanajuato" target="_blank" rel="noopener" class="btn-map" data-campo="ceremonia-maps">
+                            <i class="fas fa-map-marked-alt"></i> Google Maps
+                        </a>
+                        <a href="https://www.waze.com/ul?q=Templo%20de%20F%C3%A1tima%20Chiapas%20Sur%201108%20Arbide%20Le%C3%B3n&navigate=yes" target="_blank" rel="noopener" class="btn-map btn-waze">
+                            <i class="fas fa-car"></i> Waze
+                        </a>
+                    </div>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 8. Recepción -->
+        <section class="content-section" data-section="reception">
+            <div class="hero-content">
+                <p class="hero-subtitle">CELEBREMOS EN</p>
+                <h1 class="hero-title">RECEPCIÓN</h1>
+                <div class="event-hero-details">
+                    <div class="event-icon"><i class="fas fa-glass-cheers"></i></div>
+                    <p class="event-time" data-campo="recepcion-hora">3:00 PM</p>
+                    <p class="event-location"><span data-campo="recepcion-lugar">Quinta Sao Paulo</span></p>
+                    <p class="event-address"><span data-campo="recepcion-direccion">Laurel del Valle 111, Valle de León, León, Gto.</span></p>
+                    <div class="map-buttons">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Quinta+Sao+Paulo+Laurel+del+Valle+111+Valle+de+Le%C3%B3n+Le%C3%B3n+Guanajuato" target="_blank" rel="noopener" class="btn-map" data-campo="recepcion-maps">
+                            <i class="fas fa-map-marked-alt"></i> Google Maps
+                        </a>
+                        <a href="https://www.waze.com/ul?q=Quinta%20Sao%20Paulo%20Laurel%20del%20Valle%20111%20Le%C3%B3n&navigate=yes" target="_blank" rel="noopener" class="btn-map btn-waze">
+                            <i class="fas fa-car"></i> Waze
+                        </a>
+                    </div>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 9. Vestimenta (se muestra cuando los novios la capturan en datos.html) -->
+        <section class="content-section" data-section="dresscode" data-requiere="vestimenta.tipo" hidden>
+            <div class="hero-content">
+                <p class="hero-subtitle">CÓDIGO DE</p>
+                <h1 class="hero-title">VESTIMENTA</h1>
+                <div class="dresscode-content">
+                    <div class="event-icon"><i class="fas fa-user-tie"></i></div>
+                    <p class="dress-code-text" data-campo="vestimenta-tipo"></p>
+                    <p style="margin-top:12px;font-size:.9rem;opacity:.8;" data-requiere="vestimenta.colores_reservados" hidden><i class="fas fa-ban" style="color:#e74c3c;margin-right:6px;"></i>Colores reservados: <span data-campo="vestimenta-colores"></span></p>
+                    <p style="margin-top:8px;font-size:.9rem;opacity:.8;" data-campo="vestimenta-nota"></p>
+                </div>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+        <!-- 10. Comparte -->
+        <section class="content-section" data-section="social">
+            <div class="hero-content">
+                <p class="hero-subtitle">QUEREMOS VER TUS FOTOS</p>
+                <h1 class="hero-title">COMPARTE CON NOSOTROS</h1>
+                <p class="social-subtitle">Usa nuestro hashtag en redes sociales</p>
+                <h3 class="hashtag">#JenniferYCarlos2026</h3>
+                <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </section>
+
+    </main>
+
+        <!-- RSVP -->
+        <section id="rsvp">
+            <h2 class="section-title">Confirma tu Asistencia</h2>
+            <p style="text-align:center;margin-bottom:28px;opacity:.8;">
+                Por favor confirma <span id="confirmacionLimite">lo antes posible</span>
+            </p>
+            <div id="personalizedWelcome" style="display:none;text-align:center;margin-bottom:24px;padding:20px;background:rgba(255,255,255,0.07);border-radius:12px;">
+                <p id="guestWelcomeText" style="font-size:1.1rem;margin-bottom:8px;"></p>
+                <p id="guestPassesText" style="opacity:.75;font-size:.95rem;"></p>
+            </div>
+            <div class="rsvp-form">
+                <form id="rsvpForm">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Número de personas (incluyéndote) *</label>
+                        <input type="number" id="guests" name="guests" min="1" max="20" value="1" required>
+                    </div>
+                    <div class="form-group" id="nombresGroup" style="display:none;">
+                        <label>Nombres de tus acompañantes</label>
+                        <div id="nombresContainer"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendance">¿Confirmas tu asistencia? *</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">Selecciona...</option>
+                            <option value="si">Sí, asistiré</option>
+                            <option value="no">No podré asistir</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje para los novios (opcional)</label>
+                        <textarea id="message" name="message" placeholder="Déjales un mensaje..."></textarea>
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="submit" style="background:var(--gold,#c9a84c);color:#141a3d;border:none;padding:14px 36px;border-radius:25px;font-size:1rem;font-weight:bold;cursor:pointer;">Enviar Confirmación</button>
+                    </div>
+                </form>
+                <div id="successMessage">
+                    ✓ ¡Gracias! Tu confirmación ha sido registrada.
+                </div>
+            </div>
+        </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-message">¡Gracias por acompañarnos en este día tan especial!</p>
+            <p class="footer-names">Jennifer & Carlos</p>
+            <p class="footer-date">28.11.2026</p>
+            <p class="footer-credit">Invitaciones, Fotografía, Video y Dron: Foro 7 - Arturo Cruz - 477-920-3776</p>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" hidden>
+        <button class="lightbox-close" type="button" aria-label="Cerrar">&times;</button>
+        <button class="lightbox-nav prev" type="button" aria-label="Anterior">&#10094;</button>
+        <img id="lightboxImg" src="" alt="">
+        <button class="lightbox-nav next" type="button" aria-label="Siguiente">&#10095;</button>
+    </div>
+
+    <script src="script.js?v=jc1"></script>
+    <script src="js/visitas.js?v=jc1"></script>
+    <script src="js/rsvp-guest.js?v=jc1"></script>
+    <script src="js/foro7-footer.js?v=1"></script>
+<script>
+// Splash handler
+(function(){
+    const splash = document.getElementById('splashScreen');
+    const btn = document.getElementById('openInvitation');
+    const audio = document.getElementById('background-music');
+    if (!btn || !splash) return;
+    btn.addEventListener('click', function(){
+        splash.classList.add('hidden');
+        if (audio) audio.play().catch(()=>{});
+    });
+})();
+</script>
+    <script>
+    (function () {
+        const token = new URLSearchParams(window.location.search).get('inv');
+        if (token) return;
+        const SB_URL  = 'https://nzpujmlienzfetqcgsxz.supabase.co';
+        const SB_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56cHVqbWxpZW56ZmV0cWNnc3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2ODYzMzYsImV4cCI6MjA5MDI2MjMzNn0.xl3lsb-KYj5tVLKTnzpbsdEGoV9ySnswH4eyRuyEH1s';
+        const SB_H    = { 'apikey': SB_ANON, 'Authorization': 'Bearer ' + SB_ANON, 'Content-Type': 'application/json' };
+        const SLUG    = 'boda-jennifer-carlos';
+        const WA_NUMS = ['5214778538136'];
+        const NOMBRE_EVENTO = 'la boda de Jennifer y Carlos';
+
+        
+        function buildNombreInputs(count) {
+            var container = document.getElementById('nombresContainer');
+            var group = document.getElementById('nombresGroup');
+            if (!container || !group) return;
+            container.innerHTML = '';
+            var numAcomp = Math.max(0, count - 1);
+            group.style.display = numAcomp > 0 ? 'block' : 'none';
+            for (var i = 0; i < numAcomp; i++) {
+                var inp = document.createElement('input');
+                inp.type = 'text';
+                inp.className = 'nombre-asistente';
+                inp.placeholder = 'Acompanante ' + (i + 1);
+                inp.style.cssText = 'width:100%;padding:10px;margin-bottom:6px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;background:rgba(255,255,255,0.08);color:inherit;font-size:.95rem;';
+                container.appendChild(inp);
+            }
+        }
+
+function attachHandler() {
+            const form = document.getElementById('rsvpForm');
+            if (!form) return;
+            var guestsInput = document.getElementById('guests');
+            if (guestsInput) {
+                guestsInput.addEventListener('change', function(){ buildNombreInputs(parseInt(this.value)||1); });
+                guestsInput.addEventListener('input', function(){ buildNombreInputs(parseInt(this.value)||1); });
+                buildNombreInputs(parseInt(guestsInput.value)||1);
+            }
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const nombre  = (document.getElementById('name')?.value || '').trim();
+                const pases   = parseInt(document.getElementById('guests')?.value || '1');
+                const asiste  = document.getElementById('attendance')?.value === 'si';
+                const mensaje = (document.getElementById('message')?.value || '').trim();
+                                const nombres = Array.from(document.querySelectorAll('.nombre-asistente')).map(function(inp){ return inp.value.trim(); }).filter(Boolean);
+                if (!nombre) return;
+                const btn = form.querySelector('button[type="submit"]');
+                if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
+                try {
+                    const evR = await fetch(`${SB_URL}/rest/v1/eventos?slug=eq.${SLUG}&select=id&limit=1`, { headers: SB_H });
+                    const [ev] = await evR.json();
+                    if (ev?.id) {
+                        const r_inv = await fetch(`${SB_URL}/rest/v1/invitados`, {
+                            method: 'POST',
+                            headers: { ...SB_H, 'Prefer': 'return=representation' },
+                            body: JSON.stringify({ evento_id: ev.id, nombre, pases_asignados: pases, pases_confirmados: pases, asiste, status: asiste ? 'confirmada' : 'declinada', mensaje: mensaje || null, fecha_confirmacion: new Date().toISOString() })
+                        });
+                        const [inv] = await r_inv.json();
+                        if (inv?.id && nombres.length) {
+                            await fetch(`${SB_URL}/rest/v1/acompanantes`, {
+                                method: 'POST', headers: { ...SB_H, 'Prefer': 'return=minimal' },
+                                body: JSON.stringify(nombres.map((n,i) => ({ invitado_id: inv.id, nombre: n, orden: i })))
+                            });
+                        }
+                    }
+                } catch (err) {}
+                form.style.display = 'none';
+                const succ = document.getElementById('successMessage');
+                if (succ) succ.style.display = 'block';
+                const txt = asiste
+                    ? `Hola, confirmo mi asistencia a ${NOMBRE_EVENTO}.\nNombre: ${nombre}\nPersonas: ${pases}${nombres.length ? "\nAcompanantes: " + nombres.join(", ") : ""}${mensaje ? '\nMensaje: ' + mensaje : ''}`
+                    : `Hola, lamentablemente no podré asistir a ${NOMBRE_EVENTO}.\nNombre: ${nombre}${mensaje ? '\nMensaje: ' + mensaje : ''}`;
+                WA_NUMS.forEach((num, i) => setTimeout(() => window.open(`https://wa.me/${num}?text=${encodeURIComponent(txt)}`, '_blank'), 400 + i * 600));
+            });
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attachHandler);
+        else attachHandler();
+    })();
+    </script>
+<script>window.EVENTO_SLUG='boda-jennifer-carlos';</script>
+<script src="js/evento-loader.js?v=jc1"></script>
+<script>
+// Galería con visor
+(function(){
+    var btns=[].slice.call(document.querySelectorAll('#galleryGrid button'));
+    var lb=document.getElementById('lightbox'), img=document.getElementById('lightboxImg'), i=0;
+    if(!lb||!btns.length)return;
+    function show(n){ i=(n+btns.length)%btns.length; img.src=btns[i].dataset.full; img.alt=btns[i].querySelector('img').alt; lb.hidden=false; }
+    btns.forEach(function(b,n){ b.addEventListener('click',function(){show(n);}); });
+    lb.querySelector('.lightbox-close').addEventListener('click',function(){lb.hidden=true;});
+    lb.querySelector('.prev').addEventListener('click',function(e){e.stopPropagation();show(i-1);});
+    lb.querySelector('.next').addEventListener('click',function(e){e.stopPropagation();show(i+1);});
+    lb.addEventListener('click',function(e){ if(e.target===lb) lb.hidden=true; });
+    document.addEventListener('keydown',function(e){ if(lb.hidden)return; if(e.key==='Escape')lb.hidden=true; if(e.key==='ArrowLeft')show(i-1); if(e.key==='ArrowRight')show(i+1); });
+})();
+</script>
+<script>
+(function(){
+    var token=new URLSearchParams(window.location.search).get('inv');
+    var btn=document.getElementById('openInvitation');
+    if(btn)btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+    if(!token)return;
+    var SB_URL='https://nzpujmlienzfetqcgsxz.supabase.co';
+    var SB_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56cHVqbWxpZW56ZmV0cWNnc3h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2ODYzMzYsImV4cCI6MjA5MDI2MjMzNn0.xl3lsb-KYj5tVLKTnzpbsdEGoV9ySnswH4eyRuyEH1s';
+    fetch(SB_URL+'/rest/v1/invitados?token=eq.'+encodeURIComponent(token)+'&select=nombre,pases_asignados&limit=1',{headers:{'apikey':SB_ANON,'Authorization':'Bearer '+SB_ANON}})
+    .then(function(r){return r.json();})
+    .then(function(rows){
+        if(!rows||!rows.length)return;
+        var g=rows[0];
+        var sub=document.getElementById('splashSubtitle');
+        var dateEl=document.getElementById('splashDate');
+        var gEl=document.getElementById('splashGuest');
+        var pEl=document.getElementById('splashPases');
+        if(sub)sub.textContent='Hola,';
+        document.querySelectorAll('.splash-names,.splash-name,.splash-title').forEach(function(el){el.style.display='none';});
+        if(dateEl)dateEl.style.display='none';
+        if(gEl){gEl.textContent=g.nombre;gEl.style.display='block';}
+        if(pEl){pEl.textContent='🎟 '+g.pases_asignados+' '+(g.pases_asignados===1?'pase':'pases');pEl.style.display='block';}
+        if(btn)btn.textContent='Ver mi Invitación';
+    }).catch(function(){});
+})();
+</script>
+</body>
+</html>

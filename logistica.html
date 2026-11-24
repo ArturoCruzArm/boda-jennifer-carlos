@@ -235,17 +235,21 @@
         @media (max-width: 768px) {
             .header h1 { font-size: 1.8rem; }
             .timeline { padding-left: 20px; }
-            .nav-links { flex-direction: column; align-items: center; }
+            .nav-links { gap: 8px; }
+            .nav-links a { padding: 8px 14px; font-size: .85rem; }
         }
 
+        .print-btn { position: fixed; top: 16px; right: 16px; background: #24306e; color: #fff; border: 0; padding: 10px 18px; border-radius: 22px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,.2); z-index: 50; }
+        @media (max-width: 768px) { .print-btn { top: auto; right: auto; bottom: 14px; left: 14px; } }
         @media print {
             body { background: white; }
-            .nav-links { display: none; }
+            .nav-links, .print-btn { display: none !important; }
             .section { box-shadow: none; border: 1px solid #ddd; }
         }
     </style>
 </head>
 <body>
+    <button class="print-btn" onclick="window.print()">🖨️ Imprimir</button>
     <div class="container">
         <div class="header">
             <h1><i class="fas fa-clipboard-list"></i> Logística del Evento</h1>
@@ -254,9 +258,12 @@
         </div>
 
         <div class="nav-links">
-            <a href="contrato.html"><i class="fas fa-file-contract"></i> Contrato</a>
-            <a href="logistica.html" class="active"><i class="fas fa-clipboard-list"></i> Logística</a>
-            <a href="selector.html"><i class="fas fa-images"></i> Fotos</a>
+            <a href="index.html">💌 Invitación</a>
+            <a href="selector.html">📸 Fotos</a>
+            <a href="invitados.html">👥 Invitados</a>
+            <a href="contrato.html">📄 Contrato</a>
+            <a href="logistica.html" class="active">📋 Logística</a>
+            <a href="datos.html">✍️ Datos</a>
         </div>
 
         <div class="section">
@@ -335,10 +342,13 @@
             <ul class="checklist">
                                 <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Minuto a minuto</strong> — Comida, vals, DJ o banda y hora de término</span></li>
                 <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Foto de la ampliación</strong> — Que los novios la elijan en el selector</span></li>
+                <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Lista de invitados</strong> — Cargarla en <a href="invitados.html">Invitados</a> para enviar los enlaces personalizados por WhatsApp</span></li>
+                <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Código de vestimenta</strong> — Capturarlo en <a href="datos.html">Datos</a> y aparece solo en la invitación</span></li>
                 <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Fotolibro o 200 fotos impresas</strong> — Elegir una opción del paquete</span></li>
                 <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Fotos de noviazgo o civil</strong> — Para el video de proyección (25 fotos recibidas el 2 de noviembre)</span></li>
                 <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Nombres de los novios, misa y fiesta</strong> — Recibidos el 21 de agosto</span></li>
                 <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Padres y padrinos</strong> — Recibidos el 4 de noviembre</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Invitación web</strong> — Publicada en jennifer-carlos.invitados.org con confirmación de asistencia</span></li>
                 <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Sesión previa</strong> — 15 de noviembre, Templo Expiatorio</span></li>
             </ul>
         </div>
