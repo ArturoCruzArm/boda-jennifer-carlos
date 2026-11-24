@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logística - Boda Jennifer & Carlos</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/solid.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --purple: #24306e;
+            --purple-light: #a9c4e8;
+            --purple-dark: #141c46;
+            --lavender: #dee6f6;
+            --gold: #7fd8f2;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, #dee6f6 0%, #ccd8ee 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(36,48,110,0.3);
+        }
+
+        .header h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 10px; }
+        .header p { font-size: 1.1rem; opacity: 0.9; }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: inline-block;
+            background: white;
+            color: var(--purple);
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: var(--purple);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--purple);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--purple-light);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0; bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--purple), var(--purple-light));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border-left: 4px solid var(--purple);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 25px;
+            width: 16px; height: 16px;
+            background: var(--purple);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--purple-light);
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h3 { color: #333; margin-bottom: 10px; font-size: 1.2rem; }
+        .timeline-content p { color: #666; margin-bottom: 5px; }
+
+        .location-card {
+            background: linear-gradient(135deg, #f2f5fc, #dee6f6);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border: 2px solid var(--purple-light);
+        }
+
+        .location-card h4 { color: var(--purple-dark); margin-bottom: 8px; }
+        .location-card a { color: var(--purple); text-decoration: none; font-weight: 600; }
+        .location-card a:hover { text-decoration: underline; }
+
+        .pending-notice {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border: 2px dashed #ff9800;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: #e65100;
+        }
+
+        .pending-notice i { font-size: 2rem; margin-bottom: 10px; display: block; }
+
+        .checklist { list-style: none; padding: 0; }
+
+        .checklist li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .checklist li:hover { background: #dee6f6; transform: translateX(5px); }
+        .checklist li i { color: var(--purple); font-size: 1.2rem; flex-shrink: 0; }
+
+        .important-note {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .important-note h3 { color: #2e7d32; margin-bottom: 10px; }
+
+        .important-warning {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .important-warning h3 { color: #e65100; margin-bottom: 10px; }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #eee;
+            transition: all 0.3s;
+        }
+
+        .info-card:hover {
+            border-color: var(--purple-light);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .info-card i { font-size: 2.5rem; color: var(--purple); margin-bottom: 12px; }
+        .info-card h4 { color: #333; margin-bottom: 8px; }
+        .info-card p { color: #666; font-size: 0.95rem; }
+
+        .payment-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin: 3px;
+        }
+
+        .status-paid { background: #c8e6c9; color: #2e7d32; }
+        .status-pending { background: #fff3e0; color: #e65100; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .timeline { padding-left: 20px; }
+            .nav-links { flex-direction: column; align-items: center; }
+        }
+
+        @media print {
+            body { background: white; }
+            .nav-links { display: none; }
+            .section { box-shadow: none; border: 1px solid #ddd; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-clipboard-list"></i> Logística del Evento</h1>
+            <p>Boda de Jennifer &amp; Carlos</p>
+            <p>Sábado, 28 de Noviembre de 2026</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="contrato.html"><i class="fas fa-file-contract"></i> Contrato</a>
+            <a href="logistica.html" class="active"><i class="fas fa-clipboard-list"></i> Logística</a>
+            <a href="selector.html"><i class="fas fa-images"></i> Fotos</a>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-calendar-check"></i> Resumen del Evento</h2>
+            <div class="info-grid">
+                <div class="info-card"><i class="fas fa-calendar-alt"></i><h4>Fecha</h4><p><strong>Sábado, 28 de Noviembre de 2026</strong></p></div>
+                <div class="info-card"><i class="fas fa-heart"></i><h4>Novios</h4><p><strong>Jennifer Guadalupe Hernández Lucatero</strong></p><p><strong>Carlos Eduardo Serrano Almeida</strong></p></div>
+                <div class="info-card"><i class="fas fa-money-bill-wave"></i><h4>Paquete</h4><p><strong>Premium · $9,990</strong></p><span class="payment-status status-paid">Liquidado: $9,990</span></div>
+                <div class="info-card"><i class="fas fa-camera"></i><h4>Cobertura</h4><p>Sesión previa + Misa + Fiesta</p><p style="font-size:0.85rem;color:#999;">Fotografía, video y dron</p></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-clock"></i> Programa del Día</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="time-badge">1:00 PM</span>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-church"></i> Misa</h3>
+                        <div class="location-card">
+                            <h4><i class="fas fa-map-marker-alt"></i> Templo de Fátima</h4>
+                            <p>Chiapas Sur 1108, Arbide, León, Gto.</p>
+                            <p><a href="https://www.google.com/maps/search/?api=1&query=Templo+de+Fatima+Chiapas+Sur+1108+Arbide+Leon" target="_blank" rel="noopener">Ver en Google Maps</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="time-badge">3:00 PM</span>
+                    <div class="timeline-content">
+                        <h3><i class="fas fa-glass-cheers"></i> Recepción y Fiesta</h3>
+                        <div class="location-card">
+                            <h4><i class="fas fa-map-marker-alt"></i> Quinta Sao Paulo</h4>
+                            <p>Laurel del Valle 111, Valle de León, León, Gto.</p>
+                            <p><a href="https://www.google.com/maps/search/?api=1&query=Quinta+Sao+Paulo+Laurel+del+Valle+111+Leon" target="_blank" rel="noopener">Ver en Google Maps</a></p>
+                        </div>
+                        <p style="color:#e65100;"><strong>Falta:</strong> minuto a minuto (comida, vals, DJ o banda) y hora de término.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-camera-retro"></i> Sesión Fotográfica Previa</h2>
+            <div class="location-card">
+                <h4><i class="fas fa-calendar-check"></i> Domingo, 15 de Noviembre de 2026 · 2:00 PM — <span style="color:#2e7d32;">Realizada ✔</span></h4>
+                <p><strong>Templo Expiatorio</strong>, con el vestido de la boda civil (los novios prefirieron no usar el vestido de la iglesia antes de la boda).</p>
+                <p>La ampliación de 60x80 cm será con una foto de esta sesión, para colocarla en el salón. Fotos enviadas al selector el 23 de noviembre.</p>
+            </div>
+            <div class="important-note">
+                <h3><i class="fas fa-lightbulb"></i> Segunda ampliación (opcional)</h3>
+                <p>Se ofreció una segunda ampliación con foto de la iglesia por <strong>$1,500</strong>, entregada después del evento. Por ahora los novios solo colocarán la del civil.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-users"></i> Familia y Padrinos</h2>
+            <ul class="checklist">
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Padres del novio</strong> — Efraín Serrano y María Guadalupe Almeida López</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Padres de la novia</strong> — José de Jesús Hernández Medina y María Guadalupe Lucatero Pedroza</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Padrinos de velación</strong> — Salvador Sánchez Casillas y Emma Liliana Sánchez Castro</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Padrinos de anillos</strong> — Omar Fernández Curiel y Alejandrina Lucatero Pedroza</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-tasks"></i> Pagos</h2>
+            <ul class="checklist">
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Anticipo</strong> — $1,000, transferencia, 8 de septiembre de 2026 (apartado de fecha)</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Liquidación</strong> — $8,990, transferencia, 23 de noviembre de 2026</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Liquidado</strong> — $9,990 de $9,990</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-clipboard-check"></i> Pendientes y Confirmados</h2>
+            <ul class="checklist">
+                                <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Minuto a minuto</strong> — Comida, vals, DJ o banda y hora de término</span></li>
+                <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Foto de la ampliación</strong> — Que los novios la elijan en el selector</span></li>
+                <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Fotolibro o 200 fotos impresas</strong> — Elegir una opción del paquete</span></li>
+                <li><i class="fas fa-clock" style="color:#ff9800;"></i><span><strong>Fotos de noviazgo o civil</strong> — Para el video de proyección (25 fotos recibidas el 2 de noviembre)</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Nombres de los novios, misa y fiesta</strong> — Recibidos el 21 de agosto</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Padres y padrinos</strong> — Recibidos el 4 de noviembre</span></li>
+                <li><i class="fas fa-check-circle" style="color:#4caf50;"></i><span><strong>Sesión previa</strong> — 15 de noviembre, Templo Expiatorio</span></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><i class="fas fa-phone-alt"></i> Contacto</h2>
+            <div class="info-grid">
+                <div class="info-card"><i class="fas fa-user"></i><h4>Carlos Serrano</h4><p style="font-size:0.85rem;color:#999;">Novio</p><p><a href="https://wa.me/5214778538136" target="_blank" style="color:var(--purple);text-decoration:none;">477-853-8136</a></p></div>
+                <div class="info-card"><i class="fas fa-camera"></i><h4>Producciones Foro 7</h4><p>Fotografía · Video · Dron</p><p style="font-size:0.85rem;color:#999;">Padilla 112, Cumbres de Arbide, León</p><p><a href="https://wa.me/524779203776" target="_blank" style="color:var(--purple);text-decoration:none;">477-920-3776</a></p></div>
+            </div>
+        </div>
+    </div>
+    <script>window.EVENT_CONFIG = { slug: "boda-jennifer-carlos" };</script>
+    <script src="js/visitas.js?v=20261123-1"></script>
+<script src="js/foro7-footer.js?v=20261123-1"></script>
+</body>
+</html>
