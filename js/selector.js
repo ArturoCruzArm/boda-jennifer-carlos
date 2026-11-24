@@ -231,7 +231,7 @@ const photoNumber = index => visiblePhotoIndexes.indexOf(index) + 1;
 
 // Miniatura (300 px) para la cuadrícula; la foto completa se usa en el visor y la descarga
 const thumbOf = (p) => p.replace(/([^/]+)$/, 'thumb/$1');
-const fileOf = (p) => p.split('/').pop().replace('.webp', '');
+const fileOf = (p) => p.split('/').pop().replace('.webp', '').replace(/_(IA|CORREGIDA|EDITADA)$/, '');
 
 // ── Configuración del evento (único lugar para cambiar datos del contrato) ──
 const CONFIG = {
@@ -547,7 +547,7 @@ function renderGallery() {
             badgesHTML += '</div>';
         }
 
-        const displayNumber = `Foto ${photoNumber(index)} · ${fileOf(photo)}`;
+        const displayNumber = `Foto ${photoNumber(index)}`;
         const mediaHTML = `
             <div class="photo-image-container">
                 <img data-src="${thumbOf(photo)}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'/%3E" alt="${displayNumber}" class="lazy-img">
@@ -664,7 +664,7 @@ function openModal(index) {
     const modalPhotoNumber = document.getElementById('modalPhotoNumber');
 
     const photo = photos[index];
-    const displayNumber = `Foto ${photoNumber(index)} · ${fileOf(photo)}`;
+    const displayNumber = `Foto ${photoNumber(index)}`;
 
     modalPhotoNumber.textContent = displayNumber;
     document.getElementById('modalImage').src = photo;
